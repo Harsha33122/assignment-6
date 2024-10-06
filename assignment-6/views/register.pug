@@ -1,0 +1,283 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Registration
+    style.
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+      }
+
+      body {
+        background: url('/assests/images/bg2.jpg') no-repeat center center/cover;
+        height: 120vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .register-container {
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 40px;
+        width: 100%;
+        max-width: 600px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        animation: moveUp 1s ease-in-out;
+      }
+
+      @keyframes moveUp {
+        0% {
+          transform: translateY(100px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      h2 {
+        font-size: 28px;
+        color: #007BFF;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .input-group {
+        text-align: left;
+      }
+
+      label {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 5px;
+        display: block;
+      }
+
+      input,
+      select {
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid #007BFF;
+        width: 100%;
+        transition: border-color 0.3s ease;
+      }
+
+      input:focus,
+      select:focus {
+        border-color: #0056b3;
+        outline: none;
+      }
+
+      .register-btn {
+        background-color: #007BFF;
+        color: white;
+        padding: 12px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .register-btn:hover {
+        background-color: #0056b3;
+      }
+
+      .login-section {
+        margin-top: 20px;
+      }
+
+      .login-link {
+        color: #007BFF;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .login-link:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 480px) {
+        .register-container {
+          width: 90%;
+          padding: 30px;
+        }
+
+        h2 {
+          font-size: 24px;
+        }
+
+        .input-group {
+          flex-direction: column;
+        }
+      }
+  body
+    .register-container
+      h2 Register
+      form(id="registrationForm", onsubmit="return submitRegistration();")
+        .input-group
+          label(for="userType") I am a:
+          select(id="userType", name="userType", onchange="showDynamicFields()", required)
+            option(value="") Select User Type
+            option(value="doctor") Doctor
+            option(value="patient") Patient
+            option(value="receptionist") Receptionist
+        div#dynamicFields
+        .input-group
+          label(for="username") Username:
+          input(type="text", id="username", name="username", placeholder="Enter your username", required)
+        .input-group
+          label(for="password") Password:
+          input(type="password", id="password", name="password", placeholder="Enter your password", required)
+        button(type="submit", class="register-btn") Register
+      .login-section
+        p Already have an account? 
+          a(href="./login", class="login-link") Login here
+    script.
+      function showDynamicFields() {
+        const userType = document.getElementById("userType").value;
+        const dynamicFields = document.getElementById("dynamicFields");
+        const container = document.querySelector('.register-container');
+
+        let fieldsHTML = '';
+
+        if (userType === "doctor") {
+          fieldsHTML = `
+            <div class="input-group">
+              <label for="firstName">First Name:</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Enter first name" required>
+            </div>
+            <div class="input-group">
+              <label for="lastName">Last Name:</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Enter last name" required>
+            </div>
+            <div class="input-group">
+              <label for="gender">Gender:</label>
+              <select id="gender" name="gender" required>
+                <option value="">-- Select Gender --</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="age">Age:</label>
+              <input type="number" id="age" name="age" placeholder="Enter age" required>
+            </div>
+            <div class="input-group">
+              <label for="contact">Contact:</label>
+              <input type="text" id="contact" name="contact" placeholder="Enter contact number" required>
+            </div>
+          `;
+        } else if (userType === "patient") {
+          fieldsHTML = `
+            <div class="input-group">
+              <label for="firstName">First Name:</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Enter first name" required>
+            </div>
+            <div class="input-group">
+              <label for="lastName">Last Name:</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Enter last name" required>
+            </div>
+            <div class="input-group">
+              <label for="gender">Gender:</label>
+              <select id="gender" name="gender" required>
+                <option value="">-- Select Gender --</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="contact">Contact:</label>
+              <input type="text" id="contact" name="contact" placeholder="Enter contact number" required>
+            </div>
+            <div class="input-group">
+              <label for="address">Address:</label>
+              <input type="text" id="address" name="address" placeholder="Enter address" required>
+            </div>
+          `;
+        } else if (userType === "receptionist") {
+          fieldsHTML = `
+            <div class="input-group">
+              <label for="firstName">First Name:</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Enter first name" required>
+            </div>
+            <div class="input-group">
+              <label for="lastName">Last Name:</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Enter last name" required>
+            </div>
+            <div class="input-group">
+              <label for="gender">Gender:</label>
+              <select id="gender" name="gender" required>
+                <option value="">-- Select Gender --</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="contact">Contact:</label>
+              <input type="text" id="contact" name="contact" placeholder="Enter contact number" required>
+            </div>
+          `;
+        }
+
+        dynamicFields.innerHTML = fieldsHTML;
+      }
+
+      async function submitRegistration() {
+        const userType = document.getElementById("userType").value;
+        const firstName = document.getElementById("firstName") ? document.getElementById("firstName").value : '';
+        const lastName = document.getElementById("lastName") ? document.getElementById("lastName").value : '';
+        const gender = document.getElementById("gender").value;
+        const age = document.getElementById("age") ? document.getElementById("age").value : '';
+        const contact = document.getElementById("contact").value;
+        const address = document.getElementById("address") ? document.getElementById("address").value : '';
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        const response = await fetch('/api/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userType,
+            firstName,
+            lastName,
+            gender,
+            age,
+            contact,
+            address,
+            username,
+            password,
+          }),
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          alert('Registration successful!');
+          window.location.href = './login.pug';
+        } else {
+          alert('Registration failed: ' + result.message);
+        }
+        
+        return false; // Prevent form submission
+      }

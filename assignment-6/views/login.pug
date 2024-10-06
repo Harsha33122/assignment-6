@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Hospital Login
+    link(rel="stylesheet", href="/assests/css/login_style.css")
+  body
+    .login-container
+      .form-box
+        h2 Login
+        form(id="loginForm")
+          .input-group
+            label(for="userType") Select User:
+            select(id="userType", name="userType", required)
+              option(value="") -- Select User --
+              option(value="Doctor") Doctor
+              option(value="Patient") Patient
+              option(value="Receptionist") Receptionist
+          .input-group
+            label(for="username") Username:
+            input(type="text", id="username", name="username", placeholder="Enter your username", required)
+          .input-group
+            label(for="password") Password:
+            input(type="password", id="password", name="password", placeholder="Enter your password", required)
+          button(type="submit", class="login-btn") Login
+        .register-section
+          p New here? 
+            a(href="./register", class="register-link") Register
+    script(src="/assests/js/login_script.js")

@@ -1,0 +1,55 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css")
+    link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet")
+    link(rel="stylesheet" href="/assests/css/appoint.css")
+  body 
+    section.appointment-section
+      .appointment-container
+        //- Left Side: Appointment Details
+        .appointment-details
+          .appointment-tag Appointment
+          h2 Make An Appointment To Visit Our Doctor
+          p Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
+
+          //- Contact Info Sub Containers
+          .sub-container
+            .contact-item
+              .icon-container1
+                i.fas.fa-phone-alt
+              .contact-info
+                p Call Us Now
+                p
+                  strong +012 345 6789
+
+            .contact-item
+              .icon-container1
+                i.fas.fa-envelope
+              .contact-info
+                p Mail Us Now
+                p
+                  strong Pulsecare@hospitalmanagement.com
+
+        //- Right Side: Appointment Form
+        .appointment-form-container
+          form.appointment-form
+            .form-group
+              input(type="text", placeholder="Your Name", required)
+              input(type="email", placeholder="Your Email", required)
+            .form-group
+              input(type="text", placeholder="Your Mobile", required)
+              select(required)
+                option(value="") Choose Doctor
+                option(value="1") Doctor 1
+                option(value="2") Doctor 2
+                option(value="3") Doctor 3
+            .form-group
+              input(type="date", required)
+              input(type="time", required)
+            textarea(placeholder="Describe your problem", required)
+            button.book-btn(type="submit") Book Appointment
+    script(src="/assests/js/script.js")
